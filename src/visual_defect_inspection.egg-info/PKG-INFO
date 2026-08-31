@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: visual-defect-inspection
+Version: 0.1.0
+Summary: Tools for detect visual defect
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: Pillow
+Requires-Dist: matplotlib
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: scikit-learn
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: jupyter; extra == "dev"
