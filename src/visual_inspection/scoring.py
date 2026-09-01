@@ -40,3 +40,31 @@ def knn_anomaly_score(reference_features, query_features, k=5):
         largest=False,
     ).values
     return nearest_distances.mean(dim=1)
+
+
+def calibrate_threshold(scores, quantile=0.95):
+    if scores.numel() == 0:
+        raise ValueError("The scores tensor is empty")
+    if scores.dim() != 1:
+        raise ValueError("The scores tensor must be 1D")
+    if not 0 <= quantile <= 1:
+        raise ValueError("The quantile value must be between 0 and 1")
+    threshold = torch.quantile(scores, quantile)
+    return threshold
+
+
+def predict_from_scores(scores, threshold):
+    if scores.numel() == 0:
+        raise ValueError("The scores tensor is empty")
+    if scores.dim() != 1:
+        raise ValueError("The scores tensor must be 1D")
+
+    threshold_tensor = torch.as_tensor(threshold)
+    if threshold_tensor.dim() != 0:
+        raise ValueError("The threshold must be a scalar")
+
+    threshold = float(threshold_tensor.item())
+    return [
+        "defective" if float(score) > threshold else "normal"
+        for score in scores
+    ]
