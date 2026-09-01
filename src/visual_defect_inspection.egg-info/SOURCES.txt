@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-src/visual_defect_inspection.egg-info/PKG-INFO
-src/visual_defect_inspection.egg-info/SOURCES.txt
-src/visual_defect_inspection.egg-info/dependency_links.txt
-src/visual_defect_inspection.egg-info/requires.txt
-src/visual_defect_inspection.egg-info/top_level.txt
-src/visual_inspection/__init__.py
