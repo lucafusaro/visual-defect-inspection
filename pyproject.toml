@@ -25,7 +25,8 @@ dependencies = [
 dev = [
     "pytest",
     "ruff",
-    "jupyter"
+    "jupyter",
+    "httpx",
 ]
 
 [tool.setuptools.packages.find]
