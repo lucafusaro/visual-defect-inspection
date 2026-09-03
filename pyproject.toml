@@ -13,6 +13,9 @@ dependencies = [
     "pandas",
     "Pillow",
     "matplotlib",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
     "torch",
     "torchvision",
     "scikit-learn"
