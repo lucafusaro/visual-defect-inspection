@@ -124,6 +124,10 @@ pytest -v
 ruff check .
 ```
 
+## Continuous Integration
+
+GitHub Actions runs the test suite and Ruff on every push and pull request.
+
 ## Current Scope
 
 - One MVTec AD category: `bottle`.

@@ -1,7 +1,10 @@
 import pandas as pd
 import pytest
 
-from visual_inspection.data import validate_dataset_index
+from visual_inspection.data import (
+    split_normal_train_validation,
+    validate_dataset_index,
+)
 
 
 def test_validate_dataset_index_accepts_valid_dataframe():
@@ -39,40 +42,37 @@ def test_validate_dataset_index_accepts_valid_dataframe():
 
 def test_validate_dataset_index_rejects_duplicate_paths():
     df = pd.DataFrame(
-            {
-                "path": [
-                    "train/good/001.png",
-                    "test/good/001.png",
-                    "train/good/001.png",
-                    "test/contamination/001.png",
-                ],
-                "split": [
-                    "train",
-                    "test",
-                    "train",
-                    "test",
-                ],
-                "label": [
-                    "normal",
-                    "normal",
-                    "normal",
-                    "defective",
-                ],
-                "defect_type": [
-                    "good",
-                    "good",
-                    "good",
-                    "contamination",
-                ],
-            }
-        )
+        {
+            "path": [
+                "train/good/001.png",
+                "test/good/001.png",
+                "train/good/001.png",
+                "test/contamination/001.png",
+            ],
+            "split": [
+                "train",
+                "test",
+                "train",
+                "test",
+            ],
+            "label": [
+                "normal",
+                "normal",
+                "normal",
+                "defective",
+            ],
+            "defect_type": [
+                "good",
+                "good",
+                "good",
+                "contamination",
+            ],
+        }
+    )
 
     with pytest.raises(ValueError, match="duplicated paths"):
         validate_dataset_index(df)
 
-
-
-from visual_inspection.data import split_normal_train_validation
 
 def test_split_normal_train_validation_has_expected_sizes():
     df = pd.DataFrame(
@@ -144,4 +144,3 @@ def test_split_normal_train_validation_rejects_defective_training_samples():
 
     with pytest.raises(ValueError, match="defective"):
         split_normal_train_validation(df)
-    
